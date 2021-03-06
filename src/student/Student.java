@@ -69,7 +69,6 @@ public class Student {
     public void setfName(String fName) { 
       this.fName = fName; 
     }
-
     
     public static void objToJSON() {
         
@@ -80,33 +79,35 @@ public class Student {
         String IName = sc.nextLine();
         
         System.out.println("Enter GPA");
-        String GPA = sc.nextLine();
+        double GPA = sc.nextDouble();
         
         System.out.println("Enter currentCredits");
-        String currentCredits = sc.nextLine();
+        int currentCredits = sc.nextInt();
         
         System.out.println("Enter totalCredits");
-        String totalCredits = sc.nextLine();
+        int totalCredits = sc.nextInt();
         
         System.out.println("Enter fName");
         String fName = sc.nextLine();
         
-        /*
-        Student instance1 = new Student();
-        instance1.setIName(IName);
-        instance1.setIName(GPA);
-        instance1.setIName(currentCredits);
-        instance1.setIName(totalCredits);
-        instance1.setIName(fName);
-        */
+        List<Student> studentsList = new ArrayList(); 
+        Student students = new Student();
         
+        studentsList.add(students.setIName(IName));
+        students.setIName(GPA, GPA);
+        students.setIName(currentCredits);
+        students.setIName(totalCredits);
+        students.setIName(fName);
+        
+        for (Student student : students) {
         JSONObject obj = new JSONObject();
-        obj.put("IName", IName);
-        obj.put("GPA", GPA);
-        obj.put("currentCredits", currentCredits);
-        obj.put("totalCredits", totalCredits);
-        obj.put("fName", fName);
+        obj.put("IName", student.getIName());
+        obj.put("GPA", student.getGPA());
+        obj.put("currentCredits", student.getCurrentCredits());
+        obj.put("totalCredits", student.getTotalCredits());
+        obj.put("fName", student.getfName());
         System.out.println(obj);
+        }
         
         //Textbook Example
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder(); 
