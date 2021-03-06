@@ -52,7 +52,7 @@ public class Student {
     public int getCurrentCredits() { 
       return currentCredits; 
     }
-    public void setGPA(int currentCredits) { 
+    public void setCurrentCredits(int currentCredits) { 
       this.currentCredits = currentCredits; 
     }
     
@@ -90,16 +90,21 @@ public class Student {
         System.out.println("Enter fName");
         String fName = sc.nextLine();
         
-        List<Student> studentsList = new ArrayList(); 
         Student students = new Student();
-        
-        studentsList.add(students.setIName(IName));
-        students.setIName(GPA, GPA);
-        students.setIName(currentCredits);
-        students.setIName(totalCredits);
+        students.setIName(IName);
+        students.setGPA(GPA);
+        students.setCurrentCredits(currentCredits);
+        students.setTotalCredits(totalCredits);
         students.setIName(fName);
         
-        for (Student student : students) {
+        ArrayList<Student> studentsList = new ArrayList(); 
+        studentsList.add(IName);
+        studentsList.add(GPA);
+        studentsList.add(currentCredits);
+        studentsList.add(totalCredits);
+        studentsList.add(fName);
+        
+        for (Student student : studentsList) {
         JSONObject obj = new JSONObject();
         obj.put("IName", student.getIName());
         obj.put("GPA", student.getGPA());
