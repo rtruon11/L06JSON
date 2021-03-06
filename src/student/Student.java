@@ -73,22 +73,25 @@ public class Student {
     public static void objToJSON() {
         
         //Video Lecture Example
-        Scanner sc = new Scanner(System.in);
+        Scanner scString = new Scanner(System.in);
+        Scanner scDouble = new Scanner(System.in);
+        Scanner scInteger = new Scanner(System.in);
+        Scanner scfName = new Scanner(System.in);
         
         System.out.println("Enter IName");
-        String IName = sc.nextLine();
+        String IName = scString.nextLine();
         
         System.out.println("Enter GPA");
-        double GPA = sc.nextDouble();
+        double GPA = scDouble.nextDouble();
         
         System.out.println("Enter currentCredits");
-        int currentCredits = sc.nextInt();
+        int currentCredits = scInteger.nextInt();
         
         System.out.println("Enter totalCredits");
-        int totalCredits = sc.nextInt();
+        int totalCredits = scInteger.nextInt();
         
         System.out.println("Enter fName");
-        String fName = sc.nextLine();
+        String fName = scfName.nextLine();
         
         Student students = new Student();
         students.setIName(IName);
@@ -97,37 +100,35 @@ public class Student {
         students.setTotalCredits(totalCredits);
         students.setIName(fName);
         
-        ArrayList<Student> studentsList = new ArrayList(); 
+        ArrayList studentsList = new ArrayList(); 
         studentsList.add(IName);
         studentsList.add(GPA);
         studentsList.add(currentCredits);
         studentsList.add(totalCredits);
         studentsList.add(fName);
         
-        for (Student student : studentsList) {
         JSONObject obj = new JSONObject();
-        obj.put("IName", student.getIName());
-        obj.put("GPA", student.getGPA());
-        obj.put("currentCredits", student.getCurrentCredits());
-        obj.put("totalCredits", student.getTotalCredits());
-        obj.put("fName", student.getfName());
+        obj.put("IName", students.getIName());
+        obj.put("GPA", students.getGPA());
+        obj.put("currentCredits", students.getCurrentCredits());
+        obj.put("totalCredits", students.getTotalCredits());
+        obj.put("fName", students.getfName());
         System.out.println(obj);
-        }
-        
+        //break;
+
+        /*
         //Textbook Example
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder(); 
         
-        List<Student> students = new ArrayList(); 
-        
         try {
-            for (Student student : students) { 
+            for (Student student : studentsList) { 
                 jsonArrayBuilder.add( 
                   Json.createObjectBuilder() 
                   .add("IName", student.getIName()) 
                   .add("GPA", student.getGPA()) 
                   .add("CurrentCredits", student.getCurrentCredits()) 
                   .add("TotalCredits", student.getTotalCredits()) 
-                  .add("fName", student.getfName()) 
+                  .add("fName", student.getfName())
                 );
             }
 
@@ -142,6 +143,7 @@ public class Student {
         }
         catch (Exception ex) {
         }
+        */
     }
     
     public static void displayJSON() {
