@@ -30,18 +30,18 @@ public class Student {
         try (FileReader reader = new FileReader("Student.json"))
         {
             Object obj = jsonParser.parse(reader);
- 
+            
             JSONArray studentList = (JSONArray) obj;
             System.out.println("Student.json: " + studentList);
-             
+            
             studentList.forEach( emp -> displayJSON( (JSONObject) emp ) );
-        } 
+        }
         catch (FileNotFoundException e) {
             e.printStackTrace();
-        } 
+        }
         catch (IOException e) {
             e.printStackTrace();
-        } 
+        }
         catch (ParseException e) {
             e.printStackTrace();
         }
@@ -54,34 +54,34 @@ public class Student {
     private String fName;
     
     public String getIName() { 
-      return IName; 
+      return IName;
     }
     public void setIName(String IName) { 
-      this.IName = IName; 
+      this.IName = IName;
     }
     public double getGPA() { 
-      return GPA; 
+      return GPA;
     }
     public void setGPA(double GPA) { 
-      this.GPA = GPA; 
+      this.GPA = GPA;
     }
     public int getCurrentCredits() { 
-      return currentCredits; 
+      return currentCredits;
     }
     public void setCurrentCredits(int currentCredits) { 
-      this.currentCredits = currentCredits; 
+      this.currentCredits = currentCredits;
     }
     public int getTotalCredits() { 
-      return totalCredits; 
+      return totalCredits;
     }
     public void setTotalCredits(int totalCredits) { 
-      this.totalCredits = totalCredits; 
+      this.totalCredits = totalCredits;
     }
     public String getfName() { 
-      return fName; 
+      return fName;
     }
     public void setfName(String fName) { 
-      this.fName = fName; 
+      this.fName = fName;
     }
 
     public static void objToJSON() {
@@ -91,12 +91,11 @@ public class Student {
         while (i < 3) {
         Student students = new Student();
         JSONObject JSONdetails = new JSONObject();
-        JSONObject JSONStudent = new JSONObject();    
+        JSONObject JSONStudent = new JSONObject();
         
         Scanner scString = new Scanner(System.in);
         Scanner scDouble = new Scanner(System.in);
         Scanner scInteger = new Scanner(System.in);
-        Scanner scfName = new Scanner(System.in);
         
         System.out.println("Enter IDName");
         String IName = scString.nextLine();
@@ -107,7 +106,7 @@ public class Student {
         System.out.println("Enter totalCredits");
         int totalCredits = scInteger.nextInt();
         System.out.println("Enter fName");
-        String fName = scfName.nextLine();
+        String fName = scString.nextLine();
         System.out.println("");
         
         students.setIName(IName);
