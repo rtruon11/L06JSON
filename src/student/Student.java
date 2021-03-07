@@ -121,7 +121,7 @@ public class Student {
         JSONArray studentList = new JSONArray();
         studentList.add(JSONStudent);
         
-        System.out.println("JSON: " + studentList);
+        System.out.println("raw JSON: " + studentList);
         
         try (FileWriter file = new FileWriter("Student.json")) {
             file.write(studentList.toJSONString());
