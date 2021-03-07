@@ -143,8 +143,8 @@ public class Student {
         JSONObject studentObject = (JSONObject) Student.get("Student");
         System.out.println("");
         
-        String IName = (String) studentObject.get("IDName");
-        System.out.println("IName: " + IName);
+        String IName = (String) studentObject.get("IName");
+        System.out.println("DIName: " + IName);
         
         double GPA = (double) studentObject.get("GPA");
         System.out.println("GPA: " + GPA);
