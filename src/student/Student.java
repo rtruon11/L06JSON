@@ -26,7 +26,7 @@ public class Student {
         System.out.println("");
         System.out.println("Output: ");
         JSONParser jsonParser = new JSONParser();
-         
+        
         try (FileReader reader = new FileReader("Student.json"))
         {
             Object obj = jsonParser.parse(reader);
@@ -35,12 +35,14 @@ public class Student {
             System.out.println("Student.json: " + studentList);
              
             studentList.forEach( emp -> displayJSON( (JSONObject) emp ) );
- 
-        } catch (FileNotFoundException e) {
+        } 
+        catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             e.printStackTrace();
-        } catch (ParseException e) {
+        } 
+        catch (ParseException e) {
             e.printStackTrace();
         }
     }
@@ -81,7 +83,7 @@ public class Student {
     public void setfName(String fName) { 
       this.fName = fName; 
     }
-    
+
     public static void objToJSON() {
         Scanner scString = new Scanner(System.in);
         Scanner scDouble = new Scanner(System.in);
@@ -112,10 +114,10 @@ public class Student {
         JSONdetails.put("currentCredits", students.getCurrentCredits());
         JSONdetails.put("totalCredits", students.getTotalCredits());
         JSONdetails.put("fName", students.getfName());
-
+        
         JSONObject JSONStudent = new JSONObject();
         JSONStudent.put("Student", JSONdetails);
-
+        
         JSONArray studentList = new JSONArray();
         studentList.add(JSONStudent);
         
@@ -129,24 +131,24 @@ public class Student {
             System.out.println("Exception: " + ex);
         }
     }
-    
+
     public static void displayJSON(JSONObject Student) {
         try {
         JSONObject studentObject = (JSONObject) Student.get("Student");
-         
-        String IName = (String) studentObject.get("IName");    
+        
+        String IName = (String) studentObject.get("IName");
         System.out.println("IName: " + IName);
         
-        double GPA = (double) studentObject.get("GPA");    
+        double GPA = (double) studentObject.get("GPA");
         System.out.println("GPA: " + GPA);
         
-        long currentCredits = (long) studentObject.get("currentCredits");    
+        long currentCredits = (long) studentObject.get("currentCredits");
         System.out.println("Current Credits: " + currentCredits);
         
-        long totalCredits = (long) studentObject.get("totalCredits");    
+        long totalCredits = (long) studentObject.get("totalCredits");
         System.out.println("Total Credits: " + totalCredits);
         
-        String fName = (String) studentObject.get("fName");    
+        String fName = (String) studentObject.get("fName");
         System.out.println("fName: " + fName);
         }
         catch (Exception ex) {
