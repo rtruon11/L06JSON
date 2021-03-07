@@ -1,21 +1,15 @@
 package student;
 
-import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import org.json.simple.JSONObject;
 import java.util.Scanner;
-import javax.json.Json; 
-import javax.json.JsonArray; 
-import javax.json.JsonArrayBuilder; 
-import javax.json.JsonObject; 
-import javax.json.JsonObjectBuilder; 
-import javax.json.JsonWriter; 
-import java.io.FileOutputStream; 
-import java.io.InputStream;
-import java.io.OutputStream; 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import javax.json.JsonValue;
+import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -26,7 +20,27 @@ public class Student {
 
     public static void main(String[] args) {
         objToJSON();
-        displayJSON();
+        //displayJSON();
+        JSONParser jsonParser = new JSONParser();
+         
+        try (FileReader reader = new FileReader("Student.json"))
+        {
+            //Read JSON file
+            Object obj = jsonParser.parse(reader);
+ 
+            JSONArray employeeList = (JSONArray) obj;
+            System.out.println(employeeList);
+             
+            //Iterate over employee array
+            employeeList.forEach( emp -> displayJSON( (JSONObject) emp ) );
+ 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
     
     private String IName;
@@ -73,7 +87,6 @@ public class Student {
     public static void objToJSON() {
         
         //Video Lecture Example
-        try {
         Scanner scString = new Scanner(System.in);
         Scanner scDouble = new Scanner(System.in);
         Scanner scInteger = new Scanner(System.in);
@@ -108,19 +121,31 @@ public class Student {
         studentsList.add(totalCredits);
         studentsList.add(fName);
         
-        JSONObject obj = new JSONObject();
-        obj.put("IName", students.getIName());
-        obj.put("GPA", students.getGPA());
-        obj.put("currentCredits", students.getCurrentCredits());
-        obj.put("totalCredits", students.getTotalCredits());
-        obj.put("fName", students.getfName());
-        System.out.println(obj);
+        JSONObject JSONdetails = new JSONObject();
+        JSONdetails.put("IName", students.getIName());
+        JSONdetails.put("GPA", students.getGPA());
+        JSONdetails.put("currentCredits", students.getCurrentCredits());
+        JSONdetails.put("totalCredits", students.getTotalCredits());
+        JSONdetails.put("fName", students.getfName());
         //break;
 
+        JSONObject JSONStudent = new JSONObject();
+        JSONStudent.put("Student", JSONdetails);
 
+        System.out.println(JSONStudent);
+
+        JSONArray studentList = new JSONArray();
+        studentList.add(JSONStudent);
+        
+        System.out.println(studentList);
+        
+        try (FileWriter file = new FileWriter("Student.json")) {
+            file.write(studentList.toJSONString());
+            file.flush();
+            
+        /*
         //Textbook Example
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder(); 
-        
         
             //for (Student student : studentsList) { 
                 jsonArrayBuilder.add( 
@@ -141,13 +166,15 @@ public class Student {
 
             outputStream.close(); 
             jsonWriter.close(); 
+        */
         }
         catch (Exception ex) {
+            System.out.println("Exception: " + ex);
         }
-
     }
     
-    public static void displayJSON() {
+    public static void displayJSON(JSONObject Student) {
+        /*
         try {
         InputStream jsonInput = new FileInputStream("Student.json");
         String json = jsonInput.toString();
@@ -164,5 +191,14 @@ public class Student {
         catch (Exception ex) {
             System.out.println("Parse Exception: " + ex);
         }
+        */
+        
+        //Get employee object within list
+        JSONObject studentObject = (JSONObject) Student.get("Student");
+         
+        //Get employee first name
+        String IName = (String) studentObject.get("IName");    
+        System.out.println(IName);
+        
     }
 }
