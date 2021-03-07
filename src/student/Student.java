@@ -86,12 +86,13 @@ public class Student {
 
     public static void objToJSON() {
         int i = 0;
-        Student students = new Student();
-        JSONObject JSONdetails = new JSONObject();
-        JSONObject JSONStudent = new JSONObject();
         JSONArray studentList = new JSONArray();
         
         while (i < 3) {
+        Student students = new Student();
+        JSONObject JSONdetails = new JSONObject();
+        JSONObject JSONStudent = new JSONObject();    
+        
         Scanner scString = new Scanner(System.in);
         Scanner scDouble = new Scanner(System.in);
         Scanner scInteger = new Scanner(System.in);
@@ -123,6 +124,7 @@ public class Student {
         
         JSONStudent.put("Student", JSONdetails);
         
+        //Add JSON to Array to build lists
         studentList.add(JSONStudent);
         i++;
         }
@@ -144,7 +146,7 @@ public class Student {
         System.out.println("");
         
         String IName = (String) studentObject.get("IName");
-        System.out.println("DIName: " + IName);
+        System.out.println("IDName: " + IName);
         
         double GPA = (double) studentObject.get("GPA");
         System.out.println("GPA: " + GPA);
