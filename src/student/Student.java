@@ -73,6 +73,7 @@ public class Student {
     public static void objToJSON() {
         
         //Video Lecture Example
+        try {
         Scanner scString = new Scanner(System.in);
         Scanner scDouble = new Scanner(System.in);
         Scanner scInteger = new Scanner(System.in);
@@ -116,21 +117,21 @@ public class Student {
         System.out.println(obj);
         //break;
 
-        /*
+
         //Textbook Example
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder(); 
         
-        try {
-            for (Student student : studentsList) { 
+        
+            //for (Student student : studentsList) { 
                 jsonArrayBuilder.add( 
                   Json.createObjectBuilder() 
-                  .add("IName", student.getIName()) 
-                  .add("GPA", student.getGPA()) 
-                  .add("CurrentCredits", student.getCurrentCredits()) 
-                  .add("TotalCredits", student.getTotalCredits()) 
-                  .add("fName", student.getfName())
+                  .add("IName", students.getIName()) 
+                  .add("GPA", students.getGPA()) 
+                  .add("CurrentCredits", students.getCurrentCredits()) 
+                  .add("TotalCredits", students.getTotalCredits()) 
+                  .add("fName", students.getfName())
                 );
-            }
+            //}
 
             JsonArray studentsArray = jsonArrayBuilder.build(); 
             OutputStream outputStream = new FileOutputStream ("Students.json"); 
@@ -143,7 +144,7 @@ public class Student {
         }
         catch (Exception ex) {
         }
-        */
+
     }
     
     public static void displayJSON() {
