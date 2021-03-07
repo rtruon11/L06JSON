@@ -97,7 +97,7 @@ public class Student {
         Scanner scInteger = new Scanner(System.in);
         Scanner scfName = new Scanner(System.in);
         
-        System.out.println("Enter IName");
+        System.out.println("Enter IDName");
         String IName = scString.nextLine();
         System.out.println("Enter GPA");
         double GPA = scDouble.nextDouble();
@@ -143,7 +143,7 @@ public class Student {
         JSONObject studentObject = (JSONObject) Student.get("Student");
         System.out.println("");
         
-        String IName = (String) studentObject.get("IName");
+        String IName = (String) studentObject.get("IDName");
         System.out.println("IName: " + IName);
         
         double GPA = (double) studentObject.get("GPA");
